@@ -18,6 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')->group(function(){
+
     Route::apiResource('article', 'Api\v1\ArticleController')
-        ->except('create', 'edit');
+        ->except('create', 'edit', 'index');
+
+    Route::apiResource('articles', 'Api\v1\ArticleController')
+        ->only('index');
 });
